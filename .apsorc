@@ -1,0 +1,221 @@
+{
+  "entities": [
+    {
+      "name": "Course",
+      "created_at": true,
+      "updated_at": true,
+      "fields": [
+        {
+          "name": "title",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": true,
+          "isUnique": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "start_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "end_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "values": [
+            "active",
+            "inactive",
+            "completed"
+          ]
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Student",
+      "created_at": true,
+      "updated_at": true,
+      "fields": [
+        {
+          "name": "first_name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "last_name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": true,
+          "isUnique": true
+        },
+        {
+          "name": "enrollment_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "values": [
+            "active",
+            "inactive"
+          ]
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Instructor",
+      "created_at": true,
+      "updated_at": true,
+      "fields": [
+        {
+          "name": "first_name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "last_name",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "email",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": true,
+          "isUnique": true
+        },
+        {
+          "name": "hire_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "values": [
+            "active",
+            "inactive"
+          ]
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Assignment",
+      "created_at": true,
+      "updated_at": true,
+      "fields": [
+        {
+          "name": "title",
+          "type": "varchar",
+          "nullable": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "due_date",
+          "type": "date",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "varchar",
+          "nullable": false,
+          "values": [
+            "pending",
+            "submitted",
+            "graded"
+          ]
+        },
+        {
+          "name": "course_id",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "student_id",
+          "type": "integer",
+          "nullable": false
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    },
+    {
+      "name": "Enrollment",
+      "created_at": true,
+      "updated_at": true,
+      "fields": [
+        {
+          "name": "student_id",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "course_id",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "enrollment_date",
+          "type": "date",
+          "nullable": false
+        }
+      ],
+      "indexes": [],
+      "uniques": []
+    }
+  ],
+  "relationships": [
+    {
+      "from": "Course",
+      "to": "Assignment",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Student",
+      "to": "Assignment",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Instructor",
+      "to": "Course",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Student",
+      "to": "Enrollment",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Course",
+      "to": "Enrollment",
+      "type": "OneToMany"
+    }
+  ],
+  "_removedEntities": []
+}
